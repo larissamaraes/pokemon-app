@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonapp.databinding.ItemPokemonBinding
+import com.example.pokemonapp.model.Pokemon
 
 class PokemonViewHolder private constructor(
     private val binding: ItemPokemonBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    internal fun setItem(pokemon: String) {
-        binding.textPokemon.text = pokemon
+    internal fun setItem(pokemon: Pokemon) {
+        binding.textPokemon.text = pokemon.name?.toUpperCase()
     }
 
     companion object {

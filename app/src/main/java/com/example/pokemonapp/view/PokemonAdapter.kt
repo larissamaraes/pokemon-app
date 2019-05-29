@@ -2,10 +2,11 @@ package com.example.pokemonapp.view
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pokemonapp.model.Pokemon
 
 class PokemonAdapter : RecyclerView.Adapter<PokemonViewHolder>() {
 
-    var pokemons: List<String> = listOf()
+    var pokemons: List<Pokemon> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         return PokemonViewHolder.inflate(parent)
@@ -19,7 +20,8 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonViewHolder>() {
         holder.setItem(pokemons[position])
     }
 
-    internal fun observePokemons(pokemons: List<String>) {
+    internal fun observePokemons(pokemons: List<Pokemon>) {
         this.pokemons = pokemons
+        notifyDataSetChanged()
     }
 }

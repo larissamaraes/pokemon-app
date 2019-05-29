@@ -5,9 +5,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkUtils {
 
-    fun getRetrofitInstance(path: String): Retrofit {
+    private const val API_BASE_URL = "https://pokeapi.co/api/v2/"
+
+    fun getRetrofitInstance(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(path)
+            .baseUrl(API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
