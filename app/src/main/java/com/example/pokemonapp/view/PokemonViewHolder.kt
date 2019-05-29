@@ -1,4 +1,4 @@
-package com.example.pokemonapp
+package com.example.pokemonapp.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,7 +15,13 @@ class PokemonViewHolder private constructor(
 
     companion object {
         fun inflate(parent: ViewGroup) : PokemonViewHolder {
-            return  PokemonViewHolder(ItemPokemonBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            return PokemonViewHolder(
+                ItemPokemonBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
         }
     }
 }

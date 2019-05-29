@@ -1,4 +1,4 @@
-package com.example.pokemonapp
+package com.example.pokemonapp.view
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

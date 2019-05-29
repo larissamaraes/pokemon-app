@@ -1,8 +1,9 @@
-package com.example.pokemonapp
+package com.example.pokemonapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.example.pokemonapp.R
 import com.example.pokemonapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
