@@ -10,8 +10,8 @@ class PokemonViewHolder private constructor(
     private val binding: ItemPokemonBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    internal fun setItem(pokemon: Pokemon) {
-        binding.textPokemon.text = pokemon.name?.toUpperCase()
+    internal fun setItem(pokemon: Pokemon?) {
+        binding.textPokemon.text = pokemon?.name?.toUpperCase()
     }
 
     companion object {
