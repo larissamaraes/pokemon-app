@@ -7,8 +7,6 @@ import com.example.pokemonapp.model.Pokemon
 
 class PokemonAdapter : PagedListAdapter<Pokemon, PokemonViewHolder>(characterDiff) {
 
-    var pokemons: List<Pokemon> = listOf()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         return PokemonViewHolder.inflate(parent)
     }
