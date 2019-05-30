@@ -1,10 +1,11 @@
 package com.example.pokemonapp.view
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import com.example.pokemonapp.model.Pokemon
 
-class PokemonAdapter : RecyclerView.Adapter<PokemonViewHolder>() {
+class PokemonAdapter : PagedListAdapter<Pokemon, PokemonViewHolder>(characterDiff) {
 
     var pokemons: List<Pokemon> = listOf()
 
@@ -23,5 +24,19 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonViewHolder>() {
     internal fun observePokemons(pokemons: List<Pokemon>) {
         this.pokemons = pokemons
         notifyDataSetChanged()
+    }
+
+    companion object {
+        val characterDiff = object : DiffUtil.ItemCallback<Pokemon>() {
+            override fun areItemsTheSame(old: Pokemon, new: Pokemon): Boolean {
+                return old.url == new.url
+
+            }
+
+            override fun areContentsTheSame(old: Pokemon, new: Pokemon): Boolean {
+                return old == new
+            }
+
+        }
     }
 }
