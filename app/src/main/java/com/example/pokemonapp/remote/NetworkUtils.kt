@@ -6,6 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkUtils {
 
+    const val PAGE_LIMIT = 20
+
     private const val API_BASE_URL = "https://pokeapi.co/api/v2/"
 
     fun getRetrofitInstance(): Retrofit {
@@ -15,4 +17,5 @@ object NetworkUtils {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
 }
