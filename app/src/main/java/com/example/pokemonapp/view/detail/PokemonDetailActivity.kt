@@ -44,9 +44,9 @@ class PokemonDetailActivity : AppCompatActivity() {
     private fun onSuccess(detail: PokemonDetail) {
         with(binding) {
             textPokemonName.text = detail.name?.toUpperCase()
-            textBaseExperience.text = detail.baseExperience.toString() + " EXP"
-            textHeight.text = detail.height.toString() + " decimeters"
-            textWeight.text = detail.weight.toString() + " hectograms"
+            textBaseExperience.text = getString(R.string.experience_value, detail.baseExperience.toString())
+            textHeight.text = getString(R.string.height_value, detail.height.toString())
+            textWeight.text = getString(R.string.weight_value, detail.weight.toString())
         }
     }
 
