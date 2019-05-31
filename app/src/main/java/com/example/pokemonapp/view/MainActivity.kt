@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAdapter() {
-        pokemonAdapter = PokemonAdapter()
+        pokemonAdapter = PokemonAdapter({ })
         with(binding.recyclerViewPokemons) {
             adapter = pokemonAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
