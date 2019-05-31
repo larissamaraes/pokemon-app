@@ -1,4 +1,4 @@
-package com.example.pokemonapp.view
+package com.example.pokemonapp.view.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +11,7 @@ import com.example.pokemonapp.databinding.ActivityMainBinding
 import com.example.pokemonapp.model.Pokemon
 import com.example.pokemonapp.remote.NetworkUtils
 import com.example.pokemonapp.remote.paging.PokemonDataSourceFactory
+import com.example.pokemonapp.view.detail.PokemonDetailActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAdapter() {
-        pokemonAdapter = PokemonAdapter({ })
+        pokemonAdapter = PokemonAdapter { PokemonDetailActivity.startActivity(this, it) }
         with(binding.recyclerViewPokemons) {
             adapter = pokemonAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)

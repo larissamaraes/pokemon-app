@@ -1,4 +1,4 @@
-package com.example.pokemonapp.view
+package com.example.pokemonapp.view.main
 
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.pokemonapp.model.Pokemon
 
 class PokemonAdapter (
-    private val pokemonClickedCallback: (String?) -> Unit
+    private val pokemonClickedCallback: (String) -> Unit
 ) : PagedListAdapter<Pokemon, PokemonViewHolder>(characterDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
