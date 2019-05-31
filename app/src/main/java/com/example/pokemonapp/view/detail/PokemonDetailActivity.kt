@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.pokemonapp.R
 import com.example.pokemonapp.databinding.ActivityPokemonDetailBinding
+import com.example.pokemonapp.extension.isLoading
 import com.example.pokemonapp.model.PokemonDetail
 import com.example.pokemonapp.remote.NetworkUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -42,6 +43,7 @@ class PokemonDetailActivity : AppCompatActivity() {
     }
 
     private fun getPokemonDetail() {
+        binding.placeholderLoading.loading.isLoading(true)
         compositeDisposable.add(
             NetworkUtils.getRetrofitInstance().getPokemonDetail(pokemonNameExtra)
                 .subscribeOn(Schedulers.io())
@@ -51,6 +53,7 @@ class PokemonDetailActivity : AppCompatActivity() {
     }
 
     private fun onSuccess(detail: PokemonDetail) {
+        binding.placeholderLoading.loading.isLoading(false)
         with(binding) {
             textPokemonName.text = detail.name?.toUpperCase()
             textBaseExperience.text = getString(R.string.experience_value, detail.baseExperience.toString())

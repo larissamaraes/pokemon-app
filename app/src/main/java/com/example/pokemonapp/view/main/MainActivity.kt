@@ -8,6 +8,7 @@ import androidx.paging.RxPagedListBuilder
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokemonapp.R
 import com.example.pokemonapp.databinding.ActivityMainBinding
+import com.example.pokemonapp.extension.isLoading
 import com.example.pokemonapp.model.Pokemon
 import com.example.pokemonapp.remote.NetworkUtils
 import com.example.pokemonapp.remote.paging.PokemonDataSourceFactory
@@ -64,11 +65,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribeToList() {
+        binding.placeholderLoading.loading.isLoading(true)
         compositeDisposable.add(pokemonList
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { list ->
                     pokemonAdapter.submitList(list)
+                    binding.placeholderLoading.loading.isLoading(false)
                 },
                 { /* Nothing to do here */ }
             )
