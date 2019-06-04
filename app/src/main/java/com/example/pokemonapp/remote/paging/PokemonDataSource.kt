@@ -8,7 +8,8 @@ import io.reactivex.disposables.CompositeDisposable
 
 class PokemonDataSource(
     private val apiService: ApiService,
-    private val compositeDisposable: CompositeDisposable
+    private val compositeDisposable: CompositeDisposable,
+    private val hasMorePages: (Boolean) -> Unit
 ) : PageKeyedDataSource<Int, Pokemon>() {
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Pokemon>) {
@@ -25,11 +26,8 @@ class PokemonDataSource(
 
 
     private fun createObservable(
-        requestedPage: Int,
-        adjacentPage: Int,
-        requestedLoadSize: Int,
-        initialCallback: LoadInitialCallback<Int, Pokemon>?,
-        callback: LoadCallback<Int, Pokemon>?
+        requestedPage: Int, adjacentPage: Int, requestedLoadSize: Int,
+        initialCallback: LoadInitialCallback<Int, Pokemon>?, callback: LoadCallback<Int, Pokemon>?
     ) {
         compositeDisposable.add(
             apiService.getPokemons(requestedPage * requestedLoadSize, NetworkUtils.PAGE_LIMIT)
@@ -38,6 +36,7 @@ class PokemonDataSource(
                         response.results?.run {
                             initialCallback?.onResult(this, null, adjacentPage)
                             callback?.onResult(this, adjacentPage)
+                            hasMorePages.invoke(this.isNotEmpty())
                         }
                     },
                     { /* Nothing to do here */ }
