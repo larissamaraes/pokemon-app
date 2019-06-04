@@ -17,6 +17,8 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +31,11 @@ class MainActivity : AppCompatActivity() {
     private var pokemonList: Observable<PagedList<Pokemon>>
 
     init {
-        sourceFactory = PokemonDataSourceFactory(compositeDisposable, NetworkUtils.getRetrofitInstance())
+        sourceFactory = PokemonDataSourceFactory(
+            compositeDisposable,
+            NetworkUtils.getRetrofitInstance(),
+            ::handleHasMorePages
+        )
 
         val config = PagedList.Config.Builder()
             .setPageSize(NetworkUtils.PAGE_SIZE)
@@ -76,5 +82,9 @@ class MainActivity : AppCompatActivity() {
                 { /* Nothing to do here */ }
             )
         )
+    }
+
+    private fun handleHasMorePages(hasMorePages: Boolean) {
+        pokemonAdapter.updateHasMorePages(hasMorePages)
     }
 }
